@@ -59,30 +59,53 @@
 
 // export default MoneyTracker;
 
-import React, { useRef, useEffect } from "react";
+// import React, { useRef, useEffect } from "react";
 
-function Login() {
-  const usernameRef = useRef(null);
+// function Login() {
+//   const usernameRef = useRef(null);
 
-  useEffect(() => {
-    usernameRef.current.focus();
-  }, []);
+//   useEffect(() => {
+//     usernameRef.current.focus();
+//   }, []);
 
-  return (
-    <div style={{ padding: "20px" }}>
-      <h2>Login</h2>
-      <form>
-        <label>
-          Username:{" "}
-          <input type="text" placeholder="Enter username" />
-        </label>
-        <br />
-        <label>
-          Password: <input type="password"ref={usernameRef} placeholder="Enter password" />
-        </label>
-      </form>
-    </div>
-  );
-}
+//   return (
+//     <div style={{ padding: "20px" }}>
+//       <h2>Login</h2>
+//       <form>
+//         <label>
+//           Username:{" "}
+//           <input type="text"ref={usernameRef} placeholder="Enter username" />
+//         </label>
+//         <br />
+//         <label>
+//           Password: <input type="password"placeholder="Enter password" />
+//         </label>
+//       </form>
+//     </div>
+//   );
+// }
 
-export default Login;
+// export default Login;
+
+
+import { useState, useRef, useEffect } from 'react';
+    
+    function Counter() {
+      const [count, setCount] = useState(0);
+      const previousCountRef = useRef(count); 
+    
+      useEffect(() => {
+        if (previousCountRef.current !== count) {
+          console.log('Count changed:', count, '(Previous:', previousCountRef.current, ')');
+        }
+        previousCountRef.current = count; 
+      }, [count]);
+    
+      return (
+        <div>
+          <p>Count: {count}</p>
+          <button onClick={() => setCount(count + 1)}>Increment</button>
+        </div>
+      );
+    }
+    export default Counter
