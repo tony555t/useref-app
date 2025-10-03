@@ -19,13 +19,40 @@
 // }
 // export default MyComponent;
 
-import {useRef} from "react";
-function MyComponent(){
-  const reference = useRef(true);
-  const handleUpdate =()=>{
-    reference.current = !reference.current;
+// import {useRef} from "react";
+// function MyComponent(){
+//   const reference = useRef(true);// to create an object like {current:true}
+//   const handleUpdate =()=>{
+//     reference.current = !reference.current;
+//   };
+//   console.log(reference.current)
+//   return <button onClick={handleUpdate}>Update </button>
+// }
+// export default MyComponent;
+
+import { useRef, useState } from "react";
+
+function MoneyTracker() {
+  const balance = useRef(1000); // stores actual value
+  const [displayBalance, setDisplayBalance] = useState(balance.current); // used for UI
+
+  const handleAddMoney = () => {
+    balance.current += 500;
+    setDisplayBalance(balance.current); // update UI
   };
-  console.log(reference.current)
-  return <button onClick={handleUpdate}>Update </button>
+
+  const handleDeductMoney = () => {
+    balance.current -= 200;
+    setDisplayBalance(balance.current); // update UI
+  };
+
+  return (
+    <div>
+      <h3>Balance: {displayBalance}</h3>
+      <button onClick={handleAddMoney}>Add 500</button>
+      <button onClick={handleDeductMoney}>Deduct 200</button>
+    </div>
+  );
 }
-export default MyComponent;
+
+export default MoneyTracker;
